@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Tue Aug 28 22:01:44 2018
-
+Python 3.6
 @author: wu
 """
 from selenium import webdriver
