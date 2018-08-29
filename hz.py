@@ -12,7 +12,7 @@ from threading import Thread
 
 class Hongzha(object):
     def __init__(self):
-        self.phone = "17607114136" #Phone Number
+        self.phone = "1XXX" #Phone Number
         self.num = 0
     
     def send_yanzhengma(self,button,name):
