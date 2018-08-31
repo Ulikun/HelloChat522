@@ -54,7 +54,7 @@ class Hongzha(object):
         headers = {'User-Agent': UserAgent}
         return headers
 
-    #网站1 瓜子二手车
+    # 网站1 瓜子二手车
     def web1(self,name):
         while True:
             #设置Chrome无界面启动运行
@@ -79,7 +79,7 @@ class Hongzha(object):
             driver.quit()
             time.sleep(60)
             
-    #网站2 房天下
+    # 网站2 房天下
     def web2(self, name):
         while True:
             options = webdriver.FirefoxOptions()
@@ -97,11 +97,32 @@ class Hongzha(object):
             driver.quit()
             time.sleep(60)
 
+    # 网站3 有赞
+    def web3(self, name)：
+        while True:
+            options = webdriver.FirefoxOptions()
+            proxyip = self.chooseip(self.path)
+            options.add_argument("--proxy-server=https://%s"%proxyip)
+            driver = webdriver.Firefox()
+            driver.get('https://www.youzan.com/v2/account')    #网址
+            time.sleep(2)
+            tel =driver.find_element_by_class_name('js-mobile css-mobile')
+            tel.send_keys(self.phone)
+            button = driver.find_element_by_class_name('btn js-fetch-sms btn-operation').click()
+            driver.get('http://httpbin.org/ip')
+            currentip = re.findall('"origin": "(.*?)"', driver.page_source, re.S)[0]
+            self.send_yanzhengma(name,currentip)
+            driver.quit()
+            time.sleep(60)
+    
+    # 网站4 
 if __name__ == '__main__':
     hongzha = Hongzha()
 
     web1 = Thread(target=hongzha.web1,args=("web1",))
     web2 = Thread(target=hongzha.web2,args=("web2",))
+    web3 = Thread(target=hongzha.web3,args=("web3",))
     
     web1.start()
     web2.start()
+    web3.start()

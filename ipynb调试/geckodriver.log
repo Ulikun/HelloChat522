@@ -1,0 +1,23 @@
+1535646225117	geckodriver	INFO	geckodriver 0.21.0
+1535646225138	geckodriver	INFO	Listening on 127.0.0.1:59820
+1535646228177	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--proxy-server=https://114.215.95.188:3128" "user-agent={\'User-Agent\': \'Mozilla/5.0 (Windows NT 6.2) ApplUnable to read VR Path Registry from C:\Users\chenc\AppData\Local\openvr\openvrpaths.vrpath
+Unable to read VR Path Registry from C:\Users\chenc\AppData\Local\openvr\openvrpaths.vrpath
+Unable to read VR Path Registry from C:\Users\chenc\AppData\Local\openvr\openvrpaths.vrpath
+Unable to read VR Path Registry from C:\Users\chenc\AppData\Local\openvr\openvrpaths.vrpath
+Unable to read VR Path Registry from C:\Users\chenc\AppData\Local\openvr\openvrpaths.vrpath
+1535646235740	Marionette	INFO	Listening on port 59837
+1535646235830	Marionette	WARN	TLS certificate errors will be ignored for this session
+[Parent 52136, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 52136, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 53352, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 53352, Ch[Parent 52136, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 52712, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 52712, Chrome_ChildTh*** UTM:SVC TimerManager:registerTimer called after profile-before-change notification. Ignoring timer registration for id: telemetry_modules_ping
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+e 346
+[Child 5*** UTM:SVC TimerManager:registerTimer called after profile-before-change notification. Ignoring timer registration for id: telemetry_modules_ping
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
