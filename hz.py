@@ -13,7 +13,7 @@ from threading import Thread
 
 class Hongzha(object):
     def __init__(self):
-        self.phone = "1** **** ****" #Phone Number
+        self.phone = "18202769399" #Phone Number
         self.num = 0
         self.path = r'./ip.txt'
     
@@ -65,64 +65,155 @@ class Hongzha(object):
             options.add_argument("--proxy-server=https://%s"%proxyip)
             options.add_argument('user-agent=%s'%header)
             driver = webdriver.Firefox(options=options)
-            driver.get("http://www.guazi.com/nc/")    #网址
-            time.sleep(3)
-            driver.find_element_by_xpath("//a[@class='close js-close-finance-popup']").click()
-            driver.find_element_by_xpath("//a[@class='uc-my']").click ()
-            time.sleep(3)
-            tel =driver.find_element_by_xpath("//input[@placeholder='请输入您的手机号码']")
+            driver.get(r"https://www.guazi.com/www/bj/buy")
+            time.sleep(1)
+            driver.find_element_by_xpath(r"//a[@class='uc-my']").click()
+            time.sleep(1)
+            tel =driver.find_element_by_xpath(r"//input[@placeholder='请输入您的手机号码']")
             tel.send_keys(self.phone)
-            driver.find_element_by_xpath("//button[@class='get-code']").click()
-            driver.get('http://httpbin.org/ip')
-            currentip = re.findall('"origin": "(.*?)"', driver.page_source, re.S)[0]
-            self.send_yanzhengma(name,currentip)
-            driver.quit()
-            time.sleep(60)
-            
-    # 网站2 房天下
-    def web2(self, name):
-        while True:
-            options = webdriver.FirefoxOptions()
-            proxyip = self.chooseip(self.path)
-            options.add_argument("--proxy-server=https://%s"%proxyip)
-            driver = webdriver.Firefox()
-            driver.get('https://passport.fang.com/?backurl=http://wuhan.fang.com/')    #网址
-            time.sleep(2)
-            tel =driver.find_element_by_xpath('//*[@id="tel"]')
-            tel.send_keys(self.phone)
-            button = driver.find_element_by_xpath('//*[@id="send"]').click()
-            driver.get('http://httpbin.org/ip')
+            driver.find_element_by_xpath(r"//button[@class='get-code']").click()
+            driver.get(r'http://httpbin.org/ip')
             currentip = re.findall('"origin": "(.*?)"', driver.page_source, re.S)[0]
             self.send_yanzhengma(name,currentip)
             driver.quit()
             time.sleep(60)
 
-    # 网站3 有赞
-    def web3(self, name)：
+    # 网站2 有赞
+    def web2(self, name):
         while True:
             options = webdriver.FirefoxOptions()
             proxyip = self.chooseip(self.path)
+            header = self.getheaders()
             options.add_argument("--proxy-server=https://%s"%proxyip)
-            driver = webdriver.Firefox()
-            driver.get('https://www.youzan.com/v2/account')    #网址
-            time.sleep(2)
-            tel =driver.find_element_by_class_name('js-mobile css-mobile')
+            options.add_argument('user-agent=%s'%header)
+            driver = webdriver.Firefox(options=options)
+            driver.get(r'https://www.youzan.com/v2/account')
+            time.sleep(1)
+            tel =driver.find_element_by_xpath(r'/html/body/div[1]/div[2]/div/div/form/div[1]/div[1]/div/input')
             tel.send_keys(self.phone)
-            button = driver.find_element_by_class_name('btn js-fetch-sms btn-operation').click()
-            driver.get('http://httpbin.org/ip')
+            driver.find_element_by_xpath(r'/html/body/div[1]/div[2]/div/div/form/div[2]/div[1]/div/div/button').click()
+            driver.get(r'http://httpbin.org/ip')
             currentip = re.findall('"origin": "(.*?)"', driver.page_source, re.S)[0]
             self.send_yanzhengma(name,currentip)
             driver.quit()
             time.sleep(60)
     
-    # 网站4 
+    # 网站3 微盟
+    def web3(self, name):
+        while True:
+            options = webdriver.FirefoxOptions()
+            proxyip = self.chooseip(self.path)
+            header = self.getheaders()
+            options.add_argument("--proxy-server=https://%s"%proxyip)
+            options.add_argument('user-agent=%s'%header)
+            driver = webdriver.Firefox(options=options)
+            driver.get(r'https://account.weimob.com/register')
+            time.sleep(1)
+            tel =driver.find_element_by_xpath(r'//*[@id="phone"]')
+            tel.send_keys(self.phone)
+            driver.find_element_by_xpath(r'/html/body/div[2]/div/form/div[3]/a').click()
+            driver.get(r'http://httpbin.org/ip')
+            currentip = re.findall('"origin": "(.*?)"', driver.page_source, re.S)[0]
+            self.send_yanzhengma(name,currentip)
+            driver.quit()
+            time.sleep(60)
+
+    # 网站4 知乎
+    def web4(self, name):
+        while True:
+            options = webdriver.FirefoxOptions()
+            proxyip = self.chooseip(self.path)
+            header = self.getheaders()
+            options.add_argument("--proxy-server=https://%s"%proxyip)
+            options.add_argument('user-agent=%s'%header)
+            driver = webdriver.Firefox(options=options)
+            driver.get(r'https://www.zhihu.com/signup?next=%2F')
+            time.sleep(1)
+            tel =driver.find_element_by_xpath("//input[@placeholder='手机号']")
+            tel.send_keys(self.phone)
+            driver.find_element_by_xpath(r"//button[@class='Button CountingDownButton SignFlow-smsInputButton Button--plain']").click()
+            driver.get(r'http://httpbin.org/ip')
+            currentip = re.findall('"origin": "(.*?)"', driver.page_source, re.S)[0]
+            self.send_yanzhengma(name,currentip)
+            driver.quit()
+            time.sleep(60)
+
+    # 网站5 1号店
+    def web5(self, name):
+        while True:
+            options = webdriver.FirefoxOptions()
+            proxyip = self.chooseip(self.path)
+            header = self.getheaders()
+            options.add_argument("--proxy-server=https://%s"%proxyip)
+            options.add_argument('user-agent=%s'%header)
+            driver = webdriver.Firefox(options=options)
+            driver.get(r'https://passport.yhd.com/passport/register_input.do')
+            time.sleep(1)
+            tel =driver.find_element_by_xpath (r'//*[@id="phone"]')
+            tel.send_keys(self.phone)
+            driver.find_element_by_xpath(r'//input[@class="receive_code fl same_code_btn r_disable_code "]').click()
+            driver.get(r'http://httpbin.org/ip')
+            currentip = re.findall('"origin": "(.*?)"', driver.page_source, re.S)[0]
+            self.send_yanzhengma(name,currentip)
+            driver.quit()
+            time.sleep(60)
+    
+    # 网站6 蛋壳公寓
+    def web6(self, name):
+        while True:
+            options = webdriver.FirefoxOptions()
+            proxyip = self.chooseip(self.path)
+            header = self.getheaders()
+            options.add_argument("--proxy-server=https://%s"%proxyip)
+            options.add_argument('user-agent=%s'%header)
+            driver = webdriver.Firefox(options=options)
+            driver.get(r'https://www.dankegongyu.com/user-center/login.html')
+            time.sleep(1)
+            tel =driver.find_element_by_xpath (r'//input[@class="ipt-phone js-phone"]')
+            tel.send_keys(self.phone)
+            driver.find_element_by_xpath(r'//input[@class="code-btn js-code-btn"]').click()
+            driver.get(r'http://httpbin.org/ip')
+            currentip = re.findall('"origin": "(.*?)"', driver.page_source, re.S)[0]
+            self.send_yanzhengma(name,currentip)
+            driver.quit()
+            time.sleep(60)
+
+    # 网站7 青创网
+    def web7(self, name):
+        while True:
+            options = webdriver.FirefoxOptions()
+            proxyip = self.chooseip(self.path)
+            header = self.getheaders()
+            options.add_argument("--proxy-server=https://%s"%proxyip)
+            options.add_argument('user-agent=%s'%header)
+            driver = webdriver.Firefox(options=options)
+            driver.get(r'http://www.17qcc.com/register.html')
+            time.sleep(1)
+            driver.find_element_by_xpath("//input[@name='phone']").send_keys(self.phone)
+            driver.find_element_by_xpath('//input[@name="password"]').send_keys('xxk123456')
+            driver.find_element_by_xpath('//input[@name="passwordcorm"]').send_keys('xxk123456')
+            driver.find_element_by_xpath("//input[@id='getcode']").click()
+            driver.get(r'http://httpbin.org/ip')
+            currentip = re.findall('"origin": "(.*?)"', driver.page_source, re.S)[0]
+            self.send_yanzhengma(name, currentip)
+            driver.quit()
+            time.sleep(60)
+
 if __name__ == '__main__':
     hongzha = Hongzha()
 
     web1 = Thread(target=hongzha.web1,args=("web1",))
     web2 = Thread(target=hongzha.web2,args=("web2",))
     web3 = Thread(target=hongzha.web3,args=("web3",))
+    web4 = Thread(target=hongzha.web4,args=("web4",))
+    web5 = Thread(target=hongzha.web5,args=("web5",))
+    web6 = Thread(target=hongzha.web6,args=("web6",))
+    web7 = Thread(target=hongzha.web7,args=("web7",))
     
     web1.start()
     web2.start()
     web3.start()
+    web4.start()
+    web5.start()
+    web6.start()
+    web7.start()
